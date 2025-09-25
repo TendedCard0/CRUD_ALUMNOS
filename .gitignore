@@ -1,0 +1,4 @@
+crud_alumnos/
+.crud_alumnos
+**/__pycache__/
+**/*.pyc
