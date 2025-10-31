@@ -10,7 +10,7 @@ load_dotenv()
 app =  Flask(__name__)
 
 # Configuración de la base de datos PostgreSQL
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DARABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -32,7 +32,10 @@ class Estudiante(db.Model):
             'ap_materno': self.ap_materno,
             'semestre': self.semestre,
         }
-
+    
+#crear tablas si no exite     
+with app.app_context():
+    db.create_all()
 
 #Ruta raiz
 @app.route('/')
